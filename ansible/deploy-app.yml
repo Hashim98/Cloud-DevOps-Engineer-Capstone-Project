@@ -11,10 +11,7 @@
       shell: "./bin/kubectl set image deployments/{{ ENVIRONMENT_NAME }}-deployment {{ ENVIRONMENT_NAME }}-app=Hashim98/{{ ENVIRONMENT_NAME }}:{{ CIRCLE_WORKFLOW_ID }}"
       args:
         chdir: $HOME
-    - name: Update the path
-      shell: ./bin/kubectl patch deployments/{{ ENVIRONMENT_NAME }}-deployment -p '{"spec":{"progressDeadlineSeconds":600}}'
-      args:
-        chdir: $HOME
+
     - name: Check if deployment is successful
       shell: "./bin/kubectl rollout status deployments/{{ ENVIRONMENT_NAME }}-deployment"
       args:
